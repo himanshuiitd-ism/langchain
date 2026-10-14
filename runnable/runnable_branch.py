@@ -40,3 +40,9 @@ branch_chain = RunnableBranch(
 final_chain = RunnableSequence(report_chain, branch_chain)
 
 print(final_chain.invoke({'topic':'AI'}))
+
+
+
+# RunnableBranch is used when you need to choose one path from multiple paths
+# The first element in the list is a tuple of (condition, runnable)
+# The last element in the list is the default runnable
