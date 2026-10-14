@@ -1,4 +1,3 @@
-from chains.parallel_chain import parallel_chain
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
@@ -31,3 +30,9 @@ parallel_chain = RunnableParallel({
   'length': RunnableLambda(wordcount)
 })
 
+final_chain = RunnableSequence(joke_gen, parallel_chain)
+
+result = final_chain.invoke({'topic':'AI'})
+print(result)
+
+# Used when you need to do some operation which cannot be done  entirely by llm and need any custom logic in it
